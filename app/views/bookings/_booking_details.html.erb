@@ -1,0 +1,53 @@
+<div class="flex p-4 flex-col gap-3">
+   <div class="block p-6 bg-white border border-gray-200 rounded-lg shadow hover:bg-gray-100 dark:bg-gray-800 dark:border-gray-700 dark:hover:bg-gray-700 w-full">
+      <div class="border-b mb-4 ">
+         <h1 class="text-3xl font-bold tracking-tight text-gray-900 dark:text-white">To pay: <%= formatted_price(@booking.total_to_pay)%></h1>
+      </div>
+      <div class="flex justify-between">
+         <h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white"><%= @booking&.customer_name %></h5>
+         <%= form_for @booking do |f|%>
+         <%= f.select :status, options_for_select(Booking::STATUSES, @booking.status), {}, { class: 'block w-full p-1 text-sm text-gray-900 border border-gray-300 rounded-lg bg-gray-50 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500', onchange: 'this.form.requestSubmit();' } %>
+         <% end %>
+      </div>
+      <p class="font-normal text-gray-700 dark:text-gray-400">Date: <%= @booking.booked_date.strftime('%B %d, %Y')%></p>
+      <p class="font-normal text-gray-700 dark:text-gray-400"> Que Number: <%= @booking.que_number %></p>
+      <p class="font-normal text-gray-700 dark:text-gray-400"> Email: <%= @booking.email %></p>
+      <p class="font-normal text-gray-700 dark:text-gray-400"> Phone: <%= @booking.phone_number %></p>
+      <p class="font-normal text-gray-700 dark:text-gray-400"> Description given: <%= @booking.description %></p>
+   </div>
+   <div class="block p-6 bg-white border border-gray-200 rounded-lg shadow hover:bg-gray-100 dark:bg-gray-800 dark:border-gray-700 dark:hover:bg-gray-700 w-full">
+      <div class="flex items-center justify-between mb-4">
+         <h5 class="text-xl font-bold leading-none text-gray-900 dark:text-white">Booked Services</h5>
+         <%#  <a href="#" class="text-sm font-medium text-blue-600 hover:underline dark:text-blue-500">
+            View all
+            </a> %>
+      </div>
+      <div class="">
+         <ul role="list" class="divide-y divide-gray-200 dark:divide-gray-700">
+            <% @booking.bookings_service_offers.each do |bookings_service_offer|%>
+            <li class="py-3 sm:py-4">
+               <div class="flex items-center">
+                  <div class="flex-1 min-w-0">
+                     <p class="text-sm text-gray-900 truncate dark:text-white  text-lg font-semibold">
+                        <%= bookings_service_offer.service_offer.name %>
+                     </p>
+                  </div>
+                  <div class="inline-flex items-center text-base font-semibold text-gray-900 dark:text-white gap-2">
+                     <span><%= formatted_price(bookings_service_offer.booked_price)%></span>
+                    <%= button_to bookings_service_offer_path(bookings_service_offer), method: :delete, class: "text-rose-500" do %>
+                      <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-5 h-5">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="m9.75 9.75 4.5 4.5m0-4.5-4.5 4.5M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z" />
+                      </svg>
+                      <% end %>
+                  </div>
+               </div>
+            </li>
+            <% end %>
+         </ul>
+
+         <div class="border-t border-gray-200 py-2">
+         <button type="button" class="px-3 py-2 text-sm font-medium text-center text-white bg-blue-700 rounded-lg hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Add Services</button>
+         </div>
+      </div>
+   </div>
+</div>

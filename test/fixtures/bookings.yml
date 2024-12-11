@@ -1,0 +1,25 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  establishment: one
+  booked_date: 2024-04-19 21:49:06
+  status: MyString
+  first_name: MyString
+  last_name: MyString
+  middle_name: MyString
+  phone_number: MyString
+  email: MyString
+  que_number: MyString
+  description: MyText
+
+two:
+  establishment: two
+  booked_date: 2024-04-19 21:49:06
+  status: MyString
+  first_name: MyString
+  last_name: MyString
+  middle_name: MyString
+  phone_number: MyString
+  email: MyString
+  que_number: MyString
+  description: MyText

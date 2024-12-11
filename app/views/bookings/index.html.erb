@@ -1,0 +1,23 @@
+<div class="flex-row md:flex mx-3 mt-5">
+<div class="w-full md:w-4/6">
+  <% if notice.present? %>
+    <p class="py-2 px-3 bg-green-50 mb-5 text-green-500 font-medium rounded-lg inline-block" id="notice"><%= notice %></p>
+  <% end %>
+
+
+
+  <div class="flex justify-between items-center">
+    <h1 class="font-bold text-3xl tracking-tight text-gray-900 dark:text-white">Bookings</h1>
+    <%#= link_to "New booking", new_booking_path, class: "rounded-lg py-3 px-5 bg-blue-600 text-white block font-medium" %>
+  </div>
+
+  <div id="bookings" class="w-full mt-3 overflow-x-auto">
+    <%= render 'table' %>
+  </div>
+</div>
+
+<div class="w-full md:w-2/6">
+  <h1 class="font-bold text-3xl ms-3 tracking-tight text-gray-900 dark:text-white">Details</h1>
+  <%= render "booking_details" %>
+</div>
+</div>

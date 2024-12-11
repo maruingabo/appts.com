@@ -1,0 +1,63 @@
+
+            <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600" id="<%= dom_id service_offer %>">
+                <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
+                    <%= service_offer.name %>
+                </th>
+                <td class="px-6 py-4">
+                    <%= formatted_price( service_offer.price) %>
+                </td>
+                <td class="px-6 py-4">
+                    <%= service_offer.limited_per_day ? 'Yes' : 'No'%>
+                </td>
+                <td class="px-6 py-4">
+                    <%= service_offer.slot.nil? ? 'Unlimited/Until closing' : service_offer.slot %>
+                </td>
+                <td class="px-6 py-4">
+                    <%= service_offer.bookings.bookings_this_month.count %>
+                </td>
+                <td class="px-6 py-4">
+                    <%= service_offer.bookings.count %>
+                </td>
+                <td class="px-6 py-4">
+                    <%= service_offer.status %>
+                </td>
+                <td class="px-6 py-4 text-right">
+                  <%= link_to "Edit", edit_service_offer_path(service_offer), class: "font-medium text-blue-600 dark:text-blue-500 hover:underline" %>
+                </td>
+            </tr>
+
+
+<!-- <div >
+  <p class="my-5">
+    <strong class="block font-medium mb-1">Establishment:</strong>
+    <%#= service_offer.establishment_id %>
+  </p>
+
+  <p class="my-5">
+    <strong class="block font-medium mb-1">Name:</strong>
+  </p>
+
+  <p class="my-5">
+    <strong class="block font-medium mb-1">Price:</strong>
+  </p>
+
+  <p class="my-5">
+    <strong class="block font-medium mb-1">Slot:</strong>
+    <%#= service_offer.slot %>
+  </p>
+
+  <p class="my-5">
+    <strong class="block font-medium mb-1">Status:</strong>
+  </p>
+
+  <p class="my-5">
+    <strong class="block font-medium mb-1">Description:</strong>
+    <%#= service_offer.description %>
+  </p>
+
+  <%# if action_name != "show" %>
+    <%#= link_to "Show this service offer", service_offer, class: "rounded-lg py-3 px-5 bg-gray-100 inline-block font-medium" %>
+    <hr class="mt-6">
+  <%# end %>
+</div>
+-->

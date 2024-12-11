@@ -1,0 +1,59 @@
+
+
+<div id="<%= dom_id booking %>">
+  <p class="my-5">
+    <strong class="block font-medium mb-1">Establishment:</strong>
+    <%= booking.establishment_id %>
+  </p>
+
+  <p class="my-5">
+    <strong class="block font-medium mb-1">Booked date:</strong>
+    <%= booking.booked_date %>
+  </p>
+
+  <p class="my-5">
+    <strong class="block font-medium mb-1">Status:</strong>
+    <%= booking.status %>
+  </p>
+
+  <p class="my-5">
+    <strong class="block font-medium mb-1">First name:</strong>
+    <%= booking.first_name %>
+  </p>
+
+  <p class="my-5">
+    <strong class="block font-medium mb-1">Last name:</strong>
+    <%= booking.last_name %>
+  </p>
+
+  <p class="my-5">
+    <strong class="block font-medium mb-1">Middle name:</strong>
+    <%= booking.middle_name %>
+  </p>
+
+  <p class="my-5">
+    <strong class="block font-medium mb-1">Phone number:</strong>
+    <%= booking.phone_number %>
+  </p>
+
+  <p class="my-5">
+    <strong class="block font-medium mb-1">Email:</strong>
+    <%= booking.email %>
+  </p>
+
+  <p class="my-5">
+    <strong class="block font-medium mb-1">Que number:</strong>
+    <%= booking.que_number %>
+  </p>
+
+  <p class="my-5">
+    <strong class="block font-medium mb-1">Description:</strong>
+    <%= booking.description %>
+  </p>
+
+  <% if action_name != "show" %>
+    <%= link_to "Show this booking", booking, class: "rounded-lg py-3 px-5 bg-gray-100 inline-block font-medium" %>
+    <%= link_to "Edit this booking", edit_booking_path(booking), class: "rounded-lg py-3 ml-2 px-5 bg-gray-100 inline-block font-medium" %>
+    <hr class="mt-6">
+  <% end %>
+</div>

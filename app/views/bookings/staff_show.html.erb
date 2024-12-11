@@ -1,0 +1,21 @@
+<%= render partial: 'shared/notifications', locals: { message: flash[:notice], message_type: 'notice'} if flash[:notice] %>
+<div class="flex-row md:flex mx-3 mt-5">
+<div class="w-full md:w-4/6">
+  <div class="flex justify-between items-center">
+    <h1 class="font-bold text-3xl tracking-tight text-gray-900 dark:text-white">Bookings</h1>
+    <%#= link_to "New booking", new_booking_path, class: "rounded-lg py-3 px-5 bg-blue-600 text-white block font-medium" %>
+  </div>
+
+  <div id="bookings" class="w-full mt-3 overflow-x-auto">
+    <%= render 'table' %>
+  </div>
+</div>
+
+<div class="w-full md:w-2/6">
+  <h1 class="font-bold text-3xl ms-3 tracking-tight text-gray-900 dark:text-white">Details</h1>
+  <%= render "booking_details" %>
+</div>
+
+<%#= pie_chart BookingsServiceOffer.joins(:service_offer).group('service_offers.name').count %>
+
+</div>

@@ -1,0 +1,17 @@
+<div id="<%= dom_id bookings_result %>">
+  <p class="my-5">
+    <strong class="block font-medium mb-1">Booking:</strong>
+    <%= bookings_result.booking_id %>
+  </p>
+
+  <p class="my-5">
+    <strong class="block font-medium mb-1">Result:</strong>
+    <%= bookings_result.result_id %>
+  </p>
+
+  <% if action_name != "show" %>
+    <%= link_to "Show this bookings result", bookings_result, class: "rounded-lg py-3 px-5 bg-gray-100 inline-block font-medium" %>
+    <%= link_to "Edit this bookings result", edit_bookings_result_path(bookings_result), class: "rounded-lg py-3 ml-2 px-5 bg-gray-100 inline-block font-medium" %>
+    <hr class="mt-6">
+  <% end %>
+</div>

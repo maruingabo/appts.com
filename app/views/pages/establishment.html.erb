@@ -1,0 +1,10 @@
+<div class="bg-cover bg-center py-4 flex items-center justify-center"  style="background: linear-gradient(rgba(0, 0, 0, 0.55), rgba(0, 0, 0, 0.55)), url('<%= 'assets/bg-1.jpg'%>') center/cover no-repeat;">
+   <div class="w-4/5 p-6 bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700 opacity-90">
+      <div class="w-full text-center">
+         <h1 class="text-3xl font-semibold my-3">Need to Schedule a Visit?</h1>
+      </div>
+      <div class="w-full">
+         <%= render 'bookings/form', booking: @booking %>
+      </div>
+   </div>
+</div>

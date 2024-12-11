@@ -1,0 +1,56 @@
+<div class="mx-5 mt-5">
+  <div class="dark:bg-gray-800 bg-white">
+  <div class="mx-auto max-w-7xl">
+    <div class="grid grid-cols-1 gap-px bg-white/5 sm:grid-cols-2 lg:grid-cols-5">
+      <div class="dark:bg-gray-800 bg-white px-4 py-6 sm:px-6 lg:px-8">
+        <p class="text-sm font-medium leading-6 text-gray-400">Bookings today</p>
+        <p class="mt-2 flex items-baseline gap-x-2">
+          <span class="text-4xl font-semibold tracking-tight text-white"><%= @bookings_today.count %></span>
+        </p>
+      </div>
+      <div class="dark:bg-gray-800 bg-white px-4 py-6 sm:px-6 lg:px-8">
+        <p class="text-sm font-medium leading-6 text-gray-400">Completed booking today</p>
+        <p class="mt-2 flex items-baseline gap-x-2">
+          <span class="text-4xl font-semibold tracking-tight text-white"><%= @bookings_today.completed.count %></span>
+          <%# <span class="text-sm text-gray-400">mins</span> %>
+        </p>
+      </div>
+      <div class="dark:bg-gray-800 bg-white px-4 py-6 sm:px-6 lg:px-8">
+        <p class="text-sm font-medium leading-6 text-gray-400">Processing</p>
+        <p class="mt-2 flex items-baseline gap-x-2">
+          <span class="text-4xl font-semibold tracking-tight text-white"><%= @bookings_today.in_process.count %></span>
+        </p>
+      </div>
+      <div class="dark:bg-gray-800 bg-white px-4 py-6 sm:px-6 lg:px-8">
+        <p class="text-sm font-medium leading-6 text-gray-400">Waiting for result</p>
+        <p class="mt-2 flex items-baseline gap-x-2">
+          <span class="text-4xl font-semibold tracking-tight text-white"><%= @bookings_today.waiting_for_result.count %></span>
+        </p>
+      </div>
+      <div class="dark:bg-gray-800 bg-white px-4 py-6 sm:px-6 lg:px-8">
+        <p class="text-sm font-medium leading-6 text-gray-400">No show & Pending</p>
+        <p class="mt-2 flex items-baseline gap-x-2">
+          <span class="text-4xl font-semibold tracking-tight text-white"><%= @bookings_today.booked.count + @bookings_today.no_show.count  %></span>
+        </p>
+      </div>
+    </div>
+  </div>
+</div>
+</div>
+
+
+<div class="grid grid-cols-3 justify-items-center mt-5">
+    <div class="block p-6 bg-white border border-gray-200 rounded-lg shadow hover:bg-gray-100 dark:bg-gray-800 dark:border-gray-700 dark:hover:bg-gray-700">
+      <h1 class="text-xl dark:text-white text-gray-500 mb-4 border-b">Total monthly bookings</h1>
+      <%= pie_chart BookingsServiceOffer.joins(:service_offer).group('service_offers.name').count %>
+    </div>
+    <div class="block p-6 bg-white border border-gray-200 rounded-lg shadow hover:bg-gray-100 dark:bg-gray-800 dark:border-gray-700 dark:hover:bg-gray-700">
+      <h1 class="text-xl dark:text-white text-gray-500 mb-4 border-b">Total Monthly Completed Bookings</h1>
+      <%= column_chart BookingsServiceOffer.joins(:service_offer).group('service_offers.name').count %>
+    </div>
+
+    <div class="block p-6 bg-white border border-gray-200 rounded-lg shadow hover:bg-gray-100 dark:bg-gray-800 dark:border-gray-700 dark:hover:bg-gray-700">
+      <h1 class="text-xl dark:text-white text-gray-500 mb-4 border-b">Total Bookings</h1>
+      <%= pie_chart BookingsServiceOffer.joins(:service_offer).group('service_offers.name').count, donut: true %>
+    </div>
+</div>

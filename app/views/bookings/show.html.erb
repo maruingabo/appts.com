@@ -1,0 +1,63 @@
+<%= render partial: 'shared/notifications', locals: { message: flash[:notice], message_type: 'notice'} if flash[:notice] %>
+<% if @booking.booked? %>
+<div class="flex items-center justify-center p-3 bg-sky-500 text-white font-semibold">
+  <h1 class="text-3xl text-center"><%= @booking.que_number %></h1>
+  <%= image_tag rails_blob_path(@booking.booking_qrcode), alt: 'QR Code' %>
+
+</div>
+<% end %>
+<div class="border p-3">
+  <div class="sm:flex-col lg:flex lg:flex-row">
+    <div class="w-4/5">
+      <ul role="list" class="">
+        <li class="mt-1">
+          <p class=""><strong>Name:</strong> <%= @booking.customer_name%></p>
+        </li>
+        <li class="mt-1">
+          <p><strong>Booked Date:</strong> <%= @booking.booked_date.strftime('%B %d, %Y')%></p>
+        </li>
+        <li class="mt-1">
+          <p><strong>Email:</strong> <%= @booking.email %></p>
+        </li>
+        <li class="mt-1">
+          <p><strong>Phone:</strong> <%= @booking.phone_number.nil? ? 'Not given' : @booking.phone_number %></p>
+        </li>
+        <li class="mt-1">
+          <p><strong>Description:</strong> <%= @booking.description%></p>
+        </li>
+      </ul>
+    </div>
+    <div class="w-full mt-3 lg:w-1/5 ">
+      <div class="w-full grid align-center h-full items-center">
+      <% if @booking.pending? or params[:add].present? %>
+        <%= form_with url: bulk_create_bookings_service_offers_path, method: :post, id: :bulk_create_services do |f|%>
+          <%= f.hidden_field :booking_id, value: @booking.id %>
+          <%= f.submit "#{params[:add].present? ? 'Update booking' : 'Finish Booking'}", class: 'rounded-md bg-indigo-600 px-3 py-3 w-full text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600'%>
+        <% end %>
+      <% elsif @booking.booked? %>
+        <div class="flex flex-col align-center items-center">
+          <h2 class="text-xl">Total amount to pay</h2>
+          <h1 class="text-2xl">PHP <%= @booking.total_to_pay %></h1>
+        </div>
+      <% end %>
+      </div>
+    </div>
+  </div>
+</div>
+<% if @booking.pending? or params[:add].present? %>
+<div class="px-4 py-3 mt-3">
+  <div class="border rounded-md shadow-sm p-3 bg-amber-500">
+    <div class="flex items-center gap-3">
+    <%= warning_icon%>
+  <p class="text-sm text-white font-semibold">Select the services you need to complete to the booking process</p>
+    </div>
+</div>
+</div>
+<% end %>
+<div class="px-4 py-3 mt-3">
+  <h2 class="text-xl font-medium text-gray-500"><%= @booking.pending? ? 'Services Offered' : 'Services Booked'%></h2>
+    <%=
+  link_to 'Add new service', booking_path(id: @booking, add: true) if @booking.bookings_service_offers.blank?
+%>
+  <%= render "#{ (@booking.pending? or params[:add].present?) ? 'available_services' : 'booked_services' }" %>
+</div>

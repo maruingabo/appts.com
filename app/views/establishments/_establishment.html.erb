@@ -1,0 +1,47 @@
+<div id="<%= dom_id establishment %>">
+  <p class="my-5">
+    <strong class="block font-medium mb-1">Name:</strong>
+    <%= establishment.name %>
+  </p>
+
+  <p class="my-5">
+    <strong class="block font-medium mb-1">Address:</strong>
+    <%= establishment.address %>
+  </p>
+
+  <p class="my-5">
+    <strong class="block font-medium mb-1">Phone number:</strong>
+    <%= establishment.phone_number %>
+  </p>
+
+  <p class="my-5">
+    <strong class="block font-medium mb-1">Subdomain:</strong>
+    <%= establishment.subdomain %>
+  </p>
+
+  <p class="my-5">
+    <strong class="block font-medium mb-1">Domain:</strong>
+    <%= establishment.domain %>
+  </p>
+
+  <p class="my-5">
+    <strong class="block font-medium mb-1">Status:</strong>
+    <%= establishment.status %>
+  </p>
+
+  <p class="my-5">
+    <strong class="block font-medium mb-1">Booking offset:</strong>
+    <%= establishment.booking_offset %>
+  </p>
+
+  <p class="my-5">
+    <strong class="block font-medium mb-1">City:</strong>
+    <%= establishment.city_id %>
+  </p>
+
+  <% if action_name != "show" %>
+    <%= link_to "Show this establishment", establishment, class: "rounded-lg py-3 px-5 bg-gray-100 inline-block font-medium" %>
+    <%= link_to "Edit this establishment", edit_establishment_path(establishment), class: "rounded-lg py-3 ml-2 px-5 bg-gray-100 inline-block font-medium" %>
+    <hr class="mt-6">
+  <% end %>
+</div>

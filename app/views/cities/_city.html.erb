@@ -1,0 +1,22 @@
+<div id="<%= dom_id city %>">
+  <p class="my-5">
+    <strong class="block font-medium mb-1">Name:</strong>
+    <%= city.name %>
+  </p>
+
+  <p class="my-5">
+    <strong class="block font-medium mb-1">Province:</strong>
+    <%= city.province_id %>
+  </p>
+
+  <p class="my-5">
+    <strong class="block font-medium mb-1">Code:</strong>
+    <%= city.code %>
+  </p>
+
+  <% if action_name != "show" %>
+    <%= link_to "Show this city", city, class: "rounded-lg py-3 px-5 bg-gray-100 inline-block font-medium" %>
+    <%= link_to "Edit this city", edit_city_path(city), class: "rounded-lg py-3 ml-2 px-5 bg-gray-100 inline-block font-medium" %>
+    <hr class="mt-6">
+  <% end %>
+</div>
